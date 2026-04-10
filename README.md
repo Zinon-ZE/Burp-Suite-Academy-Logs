@@ -1,2 +1,6 @@
 # Burp-Suite-Academy-Write-Ups
-Write-ups for Burp Suite Academy labs
+This repository contains my write ups for Burp Suite Academy labs.
+
+
+## Topics Covered
+- Access Control
