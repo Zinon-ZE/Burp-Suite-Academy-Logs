@@ -2,9 +2,9 @@
 
 ## 1. Lab Description
 
-The application contains an unprotected admin panel. However, the admin panel is located at an unpredictable URL, which is not directly visible but is disclosed somewhere within the application.
+ This lab has an unprotected admin panel. It's located at an unpredictable location, but the location is disclosed somewhere in the application.
 
-The objective is to find the admin panel URL, access it, and delete the user `carlos`.
+Solve the lab by accessing the admin panel, and using it to delete the user 'carlos'. 
 
 ---
 
